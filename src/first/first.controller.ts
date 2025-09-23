@@ -1,9 +1,12 @@
 import { Body, Controller, Get, NotFoundException, Param, Post, Query } from '@nestjs/common';
 import { User } from './model/user.model';
+import { AddUserDto } from './dto/add-user.dto';
+import { FirstService } from './first.service';
 
 @Controller('users')
 export class FirstController {
     users: User[] = [];
+    constructor(private firstService: FirstService) {}
     @Get()
     getUsers(@Query() pagination) {
         const {page, nombre} = pagination;
@@ -19,12 +22,11 @@ export class FirstController {
         return user;
     }
     
+
+
+    
     @Post()
-    addUser(@Body() newUser: Partial<User>): User {
-        const {name} = newUser;
-        const id = !this.users.length ? 1 : this.users[this.users.length - 1].id + 1;
-        const user: User = {id, name};
-        this.users.push(user); 
-        return user;
+    addUser(@Body() newUser: AddUserDto): User {
+        return this.firstService.addUser(newUser);
     }
 }
