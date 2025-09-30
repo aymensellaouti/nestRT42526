@@ -4,10 +4,11 @@ import { FirstService } from './first.service';
 import { LoggerService } from './logger.service';
 import { sayHelloFactory } from './factories/say-hello.provider-factory';
 import { APP_PROVIDER_TOKENS } from '../app.config';
-import {upperCase} from 'lodash-es';
+// import {upperCase} from 'lodash-es';
 @Module({
   controllers: [FirstController],
-  providers: [{
+  providers: [
+    {
     provide:FirstService,
     useClass: FirstService,
   },{

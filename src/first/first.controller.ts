@@ -22,11 +22,11 @@ export class FirstController {
         return user;
     }
     
-
-
-    
     @Post()
     addUser(@Body() newUser: AddUserDto): User {
+        console.log( newUser instanceof AddUserDto);
+        console.log({newUser});
+        
         return this.firstService.addUser(newUser);
     }
 }
