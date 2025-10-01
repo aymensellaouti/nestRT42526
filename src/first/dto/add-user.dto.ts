@@ -2,9 +2,9 @@ import { Type } from "class-transformer";
 import { IsNotEmpty, IsNumber, IsString, MaxLength, MinLength } from "class-validator";
 
 export class AddUserDto {
-    @IsNumber()
-    @Type((jeMenFou) => Number)
-    id: number;
+    // @IsNumber()
+    // @Type((jeMenFou) => Number)
+    // id: number;
     @IsString()
     @IsNotEmpty()
     @MinLength(4)

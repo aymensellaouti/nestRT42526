@@ -23,7 +23,7 @@ export class FirstController {
     }
     
     @Post()
-    addUser(@Body() newUser: AddUserDto): User {
+    addUser(@Body() newUser: AddUserDto): Promise<User> {
         console.log( newUser instanceof AddUserDto);
         console.log({newUser});
         
