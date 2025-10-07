@@ -1,5 +1,5 @@
 import { Type } from "class-transformer";
-import { IsNotEmpty, IsNumber, IsString, MaxLength, MinLength } from "class-validator";
+import { IsNotEmpty, IsNumber, IsString, Max, MaxLength, Min, MinLength } from "class-validator";
 
 export class AddUserDto {
     // @IsNumber()
@@ -9,5 +9,10 @@ export class AddUserDto {
     @IsNotEmpty()
     @MinLength(4)
     @MaxLength(30)
-    name: string;
+    name: string;    
+    @IsNumber()
+    @Min(18)
+    @Max(145)
+    @Type(() => Number)
+    age: number;
 }

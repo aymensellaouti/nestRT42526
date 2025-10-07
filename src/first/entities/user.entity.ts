@@ -7,8 +7,10 @@ export class UserEntity {
     @Column({
         length: 50
     })
-    name: string;
-    @CreateDateColumn()
+    name: string;    
+    @Column()
+    age: number;
+    @CreateDateColumn({update: false})
     createdAt: Date;
     @UpdateDateColumn()
     updatedAt: Date;

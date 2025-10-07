@@ -1,7 +1,8 @@
-import { Body, Controller, Get, NotFoundException, Param, Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, NotFoundException, Param, Patch, Post, Query } from '@nestjs/common';
 import { User } from './model/user.model';
 import { AddUserDto } from './dto/add-user.dto';
 import { FirstService } from './first.service';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Controller('users')
 export class FirstController {
@@ -27,6 +28,23 @@ export class FirstController {
         console.log( newUser instanceof AddUserDto);
         console.log({newUser});
         
-        return this.firstService.addUser(newUser);
+        return this.firstService.create(newUser);
+    }
+    @Patch(':id')
+    updateUser(
+        @Param('id') id: number,
+        @Body() udpateUserDto: UpdateUserDto): Promise<User> {
+        
+        return this.firstService.update(id, udpateUserDto);
+    }
+    @Delete(':id')
+    softDeleteUser(
+        @Param('id') id: number): Promise<{count: number}> {
+        return this.firstService.softDelete(id);
+    }
+    @Patch('restore/:id')
+    retstoreUser(
+        @Param('id') id: number): Promise<{count: number}> {
+        return this.firstService.softRestore(id);
     }
 }
